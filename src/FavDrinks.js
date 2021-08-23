@@ -1,3 +1,72 @@
+
+// import React from 'react';
+// import axios from 'axios';
+// import { withAuth0 } from '@auth0/auth0-react';
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import { Card, Button } from 'react-bootstrap';
+
+
+
+// class FavDrinks extends React.Component {
+
+//   constructor(props) {
+//     super(props);
+
+//     this.state = {
+//       favDrinks: [],
+//     }
+//   }
+
+//   componentDidMount() {
+//     const {user} = this.props.auth0;
+
+//     axios.get(`http://localhost:3008/getFavDrinksR`, {params: {userEmail: user.email}})
+//       .then(result => {
+
+//         this.setState({
+//           favDrinks: result.data
+//         })
+//       })
+//   }
+
+
+
+
+//   render() {
+
+//     return (
+//       <>
+//         {
+//           this.state.favDrinks.length && this.state.favDrinks.map((drink, idx) => {
+
+//             return (
+//               <>
+//                 <Card style={{ width: '18rem', display: 'inline-block' }} >
+//                   <Card.Img variant="top" src={drink.drinkImg} />
+//                   <Card.Body>
+//                     <Card.Title>{drink.drinkName}</Card.Title>
+
+//                     <Button  variant="primary">Delete</Button>
+//                     <Button  variant="primary">Update</Button>
+//                   </Card.Body>
+//                 </Card>
+
+//               </>
+//             )
+//           })
+//         }
+
+//       </>
+//     )
+//   }
+// }
+
+// export default withAuth0(FavDrinks);
+
+
+//===================================================================================================1=================================
+
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BestBooks.css';
@@ -24,7 +93,8 @@ class FavDrinks extends React.Component {
     const {user} = this.props.auth0;
     
     axios
-    .get(`http://localhost:3008/favDrinksR`, {params: {userEmail: user.email}})
+    // .get(`http://localhost:3008/favDrinksR`, {params: {userEmail: user.email}})
+    .get(`${process.env.HEROKU_SERVER}/favDrinksR`, {params: {userEmail: user.email}})
     .then( result =>{
       this.setState({
         favDrinks: result.data,
@@ -36,7 +106,8 @@ class FavDrinks extends React.Component {
   deleteDrinkM = (idx) =>{
     const {user} =this.props.auth0;
     axios
-    .delete(`http://localhost:3008/deleteDrinkR/${idx}`, {params: {userEmail: user.email}})
+    // .delete(`http://localhost:3008/deleteDrinkR/${idx}`, {params: {userEmail: user.email}})
+    .delete(`${process.env.HEROKU_SERVER}/deleteDrinkR/${idx}`, {params: {userEmail: user.email}})
     .then(result => {
       this.setState({
         favDrinks: result.data
@@ -82,7 +153,8 @@ class FavDrinks extends React.Component {
    }
    
    axios
-   .put(`http://localhost:3008/updateDrinkR/${this.state.index}`, params)
+  //  .put(`http://localhost:3008/updateDrinkR/${this.state.index}`, params)
+  .put(`${process.env.HEROKU_SERVER}/updateDrinkR/${this.state.index}`, params)
    .then(result => {
      this.setState({
        favDrinks: result.data,
@@ -115,7 +187,6 @@ class FavDrinks extends React.Component {
 </Form>
 
 }
-
 
    {this.state.favDrinks.length && this.state.favDrinks.map((drink,idx)=>{
      return(
