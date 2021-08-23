@@ -81,6 +81,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 //=================================================================================================1==========================================
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -101,8 +113,7 @@ class MyFavoriteBooks extends React.Component {
 
   componentDidMount (){
     axios
-   // .get(`http://localhost:3008/getallDrinks`)
-    .get(`${process.env.HEROKU_SERVER}/getallDrinks`)
+    .get(`http://localhost:3008/getallDrinks`)
     .then( result =>{
       this.setState({
         allDrinks: result.data,
@@ -130,8 +141,7 @@ class MyFavoriteBooks extends React.Component {
     }
   }
   axios
-  // .post(`http://localhost:3008/addDrink`,params)
-  .post(`${process.env.HEROKU_SERVER}/addDrink`,params)
+  .post(`http://localhost:3008/addDrink`,params)
   .catch(err=> {console.log(err)})
  }
 

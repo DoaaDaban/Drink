@@ -93,8 +93,7 @@ class FavDrinks extends React.Component {
     const {user} = this.props.auth0;
     
     axios
-    // .get(`http://localhost:3008/favDrinksR`, {params: {userEmail: user.email}})
-    .get(`${process.env.HEROKU_SERVER}/favDrinksR`, {params: {userEmail: user.email}})
+    .get(`http://localhost:3008/favDrinksR`, {params: {userEmail: user.email}})
     .then( result =>{
       this.setState({
         favDrinks: result.data,
@@ -106,8 +105,7 @@ class FavDrinks extends React.Component {
   deleteDrinkM = (idx) =>{
     const {user} =this.props.auth0;
     axios
-    // .delete(`http://localhost:3008/deleteDrinkR/${idx}`, {params: {userEmail: user.email}})
-    .delete(`${process.env.HEROKU_SERVER}/deleteDrinkR/${idx}`, {params: {userEmail: user.email}})
+    .delete(`http://localhost:3008/deleteDrinkR/${idx}`, {params: {userEmail: user.email}})
     .then(result => {
       this.setState({
         favDrinks: result.data
@@ -153,8 +151,7 @@ class FavDrinks extends React.Component {
    }
    
    axios
-  //  .put(`http://localhost:3008/updateDrinkR/${this.state.index}`, params)
-  .put(`${process.env.HEROKU_SERVER}/updateDrinkR/${this.state.index}`, params)
+   .put(`http://localhost:3008/updateDrinkR/${this.state.index}`, params)
    .then(result => {
      this.setState({
        favDrinks: result.data,
@@ -187,6 +184,7 @@ class FavDrinks extends React.Component {
 </Form>
 
 }
+
 
    {this.state.favDrinks.length && this.state.favDrinks.map((drink,idx)=>{
      return(
